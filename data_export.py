@@ -7,7 +7,6 @@ from prime_api_v2 import (
     get_estimate_items_snapshot,
     get_jobs,
     get_locked_estimates,
-    get_site_form_template,
     get_site_forms,
 )
 from datetime import date
@@ -37,14 +36,6 @@ if __name__ == "__main__":
     with open("site-forms.json", "w") as f:
         json.dump(site_forms_result, f, indent=2)
     print(f"Saved {len(site_forms_result)} records to site-forms.json")
-
-    # Site form templates
-    site_form_templates_result = get_site_form_template(access_token)
-    with open("site-form-templates.json", "w") as f:
-        json.dump(site_form_templates_result, f, indent=2)
-    print(
-        f"Saved {len(site_form_templates_result)} records to site-form-templates.json"
-    )
 
     # Locked estimates
     locked_estimates_result = get_locked_estimates(access_token)
