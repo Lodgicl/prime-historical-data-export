@@ -18,7 +18,6 @@ Set the required environment variables, then run `data_export.py`:
 The script will export data to the following JSON files:
 
 - `site-forms.json`
-- `site-form-templates.json`
 - `locked-estimates.json`
 - `estimate-categories-snapshot.json`
 - `estimate-items-snapshot.json`

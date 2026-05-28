@@ -35,10 +35,6 @@ def get_site_forms(access_token: str, from_date: str) -> list:
     )
 
 
-def get_site_form_template(access_token: str) -> list:
-    return _get_all_pages(access_token, "site-form-templates", "site form templates")
-
-
 def get_locked_estimates(access_token: str) -> list:
     return _get_all_pages(access_token, "estimates-snapshot", "locked estimates")
 
