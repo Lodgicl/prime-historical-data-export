@@ -23,5 +23,5 @@ The script will export data to the following JSON files:
 - `estimate-categories-snapshot.json`
 - `estimate-items-snapshot.json`
 - `jobs.json`
-- `contacts-snapshot.json`
+- `non-individual-contacts.json`
 

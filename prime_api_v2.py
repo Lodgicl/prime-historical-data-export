@@ -59,11 +59,11 @@ def get_jobs(access_token: str, from_date: str) -> list:
     )
 
 
-def get_contacts_snapshot(access_token: str) -> list:
+def get_non_individual_contacts(access_token: str) -> list:
     return _get_all_pages(
         access_token,
         "contacts",
-        "contacts",
+        "non-individual contacts",
         {"q": "'isIndividual'.eq('false'),'status'.eq('active')"},
     )
 

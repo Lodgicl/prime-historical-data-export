@@ -2,7 +2,7 @@ import json
 import os
 from prime_api_v2 import (
     get_access_token,
-    get_contacts_snapshot,
+    get_non_individual_contacts,
     get_estimate_categories_snapshot,
     get_estimate_items_snapshot,
     get_jobs,
@@ -12,13 +12,9 @@ from prime_api_v2 import (
 )
 from datetime import date
 
-# The script uses Prime’s V2 public API (https://www.primeeco.tech/api.prime/v2/docs) to fetch jobs that were created in the last 12 months using {api_uri}/jobs.
-# Then for every job we would get the following:
-
-# Locked estimates from {api_uri}/estimates-snapshot. The result set can be stripped of any data but categories and items.
-# Site forms from {api_uri}/site-forms by jobId. The result set can be stripped of PII.
-# Site form template for the resulting site form from {api_uri}/site-form-templates/{id}
-
+# The script uses Prime’s V2 public API (https://www.primeeco.tech/api.prime/v2/docs) to fetch jobs and site forms that were created in the last 12 months.
+# Additionally it fetches locked estimates, estimate categories and items and non-individual contacts.
+# The extracted data is processed later to match site forms and estimates, filter out cancelled jobs etc.
 
 if __name__ == "__main__":
 
@@ -77,7 +73,7 @@ if __name__ == "__main__":
     print(f"Saved {len(jobs_result)} records to jobs.json")
 
     # Non-individual contacts
-    contacts_result = get_contacts_snapshot(access_token)
-    with open("contacts-snapshot.json", "w") as f:
+    contacts_result = get_non_individual_contacts(access_token)
+    with open("non-individual-contacts.json", "w") as f:
         json.dump(contacts_result, f, indent=2)
-    print(f"Saved {len(contacts_result)} records to contacts-snapshot.json")
+    print(f"Saved {len(contacts_result)} records to non-individual-contacts.json")
