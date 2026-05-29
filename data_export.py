@@ -31,6 +31,7 @@ if __name__ == "__main__":
     months_to_go_back = 6
     from_date = today - relativedelta(months=months_to_go_back)
     to_date = today
+    print(f"Going back {months_to_go_back} months. Fetching data from {from_date} to {to_date}...")
 
     # Site forms
     site_forms_result = get_site_forms(
