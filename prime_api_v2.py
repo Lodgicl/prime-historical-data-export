@@ -25,13 +25,13 @@ def get_access_token(
     return response.json().get("access_token")
 
 
-def get_site_forms(access_token: str, from_date: str) -> list:
+def get_site_forms(access_token: str, from_date: str, to_date: str) -> list:
     # Example from_date: "2016-12-20"
     return _get_all_pages(
         access_token,
         "site-forms",
         "site forms",
-        {"q": f"'createdAt'.gte('{from_date} 00:00:00')"},
+        {"q": f"'createdAt'.gte('{from_date} 00:00:00'),'createdAt'.lte('{to_date} 23:59:59')"},
     )
 
 
@@ -49,9 +49,9 @@ def get_estimate_items_snapshot(access_token: str) -> list:
     return _get_all_pages(access_token, "estimate-items-snapshot", "estimate items")
 
 
-def get_jobs(access_token: str, from_date: str) -> list:
+def get_jobs(access_token: str, from_date: str, to_date: str) -> list:
     return _get_all_pages(
-        access_token, "jobs", "jobs", {"q": f"'createdAt'.gte('{from_date} 00:00:00')"}
+        access_token, "jobs", "jobs", {"q": f"'createdAt'.gte('{from_date} 00:00:00'),'createdAt'.lte('{to_date} 23:59:59')"}
     )
 
 
