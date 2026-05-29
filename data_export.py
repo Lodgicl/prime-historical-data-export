@@ -10,6 +10,7 @@ from prime_api_v2 import (
     get_site_forms,
 )
 from datetime import date
+from dateutil.relativedelta import relativedelta
 
 # The script uses Prime’s V2 public API (https://www.primeeco.tech/api.prime/v2/docs) to fetch jobs and site forms that were created in the last 12 months.
 # Additionally it fetches locked estimates, estimate categories and items and non-individual contacts.
@@ -27,11 +28,13 @@ if __name__ == "__main__":
     )
 
     today = date.today()
-    twelve_months_ago = today.replace(year=today.year - 1)
+    months_to_go_back = 6
+    from_date = today - relativedelta(months=months_to_go_back)
+    to_date = today
 
     # Site forms
     site_forms_result = get_site_forms(
-        access_token, twelve_months_ago.strftime("%Y-%m-%d")
+        access_token, from_date.strftime("%Y-%m-%d"), to_date.strftime("%Y-%m-%d")
     )
     with open("site-forms.json", "w") as f:
         json.dump(site_forms_result, f, indent=2)
@@ -58,7 +61,7 @@ if __name__ == "__main__":
     print(f"Saved {len(estimate_items_result)} records to estimate-items-snapshot.json")
 
     # Jobs
-    jobs_result = get_jobs(access_token, twelve_months_ago.strftime("%Y-%m-%d"))
+    jobs_result = get_jobs(access_token, from_date.strftime("%Y-%m-%d"), to_date.strftime("%Y-%m-%d"))
     with open("jobs.json", "w") as f:
         json.dump(jobs_result, f, indent=2)
     print(f"Saved {len(jobs_result)} records to jobs.json")
