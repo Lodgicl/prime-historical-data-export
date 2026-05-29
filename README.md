@@ -9,11 +9,13 @@ Assuming you have Python installed on your machine run the following commands to
 
 Set the required environment variables, then run `data_export.py`:
 
-    export USERNAME=your_username
-    export PASSWORD=your_password
-    export CLIENT_ID=your_client_id
-    export CLIENT_SECRET=your_client_secret
+    export PRIME_USERNAME='your_username'
+    export PRIME_PASSWORD='your_password'
+    export PRIME_CLIENT_ID='your_client_id'
+    export PRIME_CLIENT_SECRET='your_client_secret'
     python data_export.py
+
+**Important**: don't forget single quotes.
 
 The script will export data to the following JSON files:
 
