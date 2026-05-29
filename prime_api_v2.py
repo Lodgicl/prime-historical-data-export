@@ -35,8 +35,13 @@ def get_site_forms(access_token: str, from_date: str, to_date: str) -> list:
     )
 
 
-def get_locked_estimates(access_token: str) -> list:
-    return _get_all_pages(access_token, "estimates-snapshot", "locked estimates")
+def get_locked_estimates(access_token: str, from_date: str, to_date: str) -> list:
+    return _get_all_pages(
+        access_token,
+        "estimates-snapshot",
+        "locked estimates",
+        {"q": f"'createdAt'.gte('{from_date} 00:00:00'),'createdAt'.lte('{to_date} 23:59:59')"},
+    )
 
 
 def get_estimate_categories_snapshot(access_token: str) -> list:

@@ -42,7 +42,9 @@ if __name__ == "__main__":
     print(f"Saved {len(site_forms_result)} records to site-forms.json")
 
     # Locked estimates
-    locked_estimates_result = get_locked_estimates(access_token)
+    locked_estimates_result = get_locked_estimates(
+        access_token, from_date.strftime("%Y-%m-%d"), to_date.strftime("%Y-%m-%d")
+    )
     with open("locked-estimates.json", "w") as f:
         json.dump(locked_estimates_result, f, indent=2)
     print(f"Saved {len(locked_estimates_result)} records to locked-estimates.json")
