@@ -20,10 +20,10 @@ if __name__ == "__main__":
     print("\n=== Starting data export ===")
 
     access_token = get_access_token(
-        os.environ["USERNAME"],
-        os.environ["PASSWORD"],
-        os.environ["CLIENT_ID"],
-        os.environ["CLIENT_SECRET"],
+        os.environ["PRIME_USERNAME"].strip(),
+        os.environ["PRIME_PASSWORD"].strip(),
+        os.environ["PRIME_CLIENT_ID"].strip(),
+        os.environ["PRIME_CLIENT_SECRET"].strip(),
     )
 
     today = date.today()
