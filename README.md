@@ -21,8 +21,5 @@ The script will export data to the following JSON files:
 
 - `site-forms.json`
 - `locked-estimates.json`
-- `estimate-categories-snapshot.json`
-- `estimate-items-snapshot.json`
 - `jobs.json`
-- `non-individual-contacts.json`
 

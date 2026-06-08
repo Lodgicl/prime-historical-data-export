@@ -28,10 +28,10 @@ if __name__ == "__main__":
     )
 
     today = date.today()
-    months_to_go_back = 6
-    from_date = today - relativedelta(months=months_to_go_back)
+    from_date = today - relativedelta(months=12)
+    # to_date = today - relativedelta(months=6) 
     to_date = today
-    print(f"Going back {months_to_go_back} months. Fetching data from {from_date} to {to_date}...")
+    print(f"Fetching data from {from_date} to {to_date}...")
 
     # Site forms
     site_forms_result = get_site_forms(
@@ -49,28 +49,9 @@ if __name__ == "__main__":
         json.dump(locked_estimates_result, f, indent=2)
     print(f"Saved {len(locked_estimates_result)} records to locked-estimates.json")
 
-    # Estimate categories snapshot
-    estimate_categories_result = get_estimate_categories_snapshot(access_token)
-    with open("estimate-categories-snapshot.json", "w") as f:
-        json.dump(estimate_categories_result, f, indent=2)
-    print(
-        f"Saved {len(estimate_categories_result)} records to estimate-categories-snapshot.json"
-    )
-
-    # Estimate items snapshot
-    estimate_items_result = get_estimate_items_snapshot(access_token)
-    with open("estimate-items-snapshot.json", "w") as f:
-        json.dump(estimate_items_result, f, indent=2)
-    print(f"Saved {len(estimate_items_result)} records to estimate-items-snapshot.json")
-
     # Jobs
     jobs_result = get_jobs(access_token, from_date.strftime("%Y-%m-%d"), to_date.strftime("%Y-%m-%d"))
     with open("jobs.json", "w") as f:
         json.dump(jobs_result, f, indent=2)
     print(f"Saved {len(jobs_result)} records to jobs.json")
-
-    # Non-individual contacts
-    contacts_result = get_non_individual_contacts(access_token)
-    with open("non-individual-contacts.json", "w") as f:
-        json.dump(contacts_result, f, indent=2)
-    print(f"Saved {len(contacts_result)} records to non-individual-contacts.json")
+ 
